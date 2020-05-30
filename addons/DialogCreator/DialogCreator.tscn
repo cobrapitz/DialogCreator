@@ -1,0 +1,153 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/DialogCreator/Button.gd" type="Script" id=1]
+[ext_resource path="res://addons/DialogCreator/GraphEdit.gd" type="Script" id=2]
+[ext_resource path="res://addons/DialogCreator/NewNode.gd" type="Script" id=3]
+[ext_resource path="res://addons/DialogCreator/Save.gd" type="Script" id=4]
+[ext_resource path="res://addons/DialogCreator/Styles/FrameBase.tres" type="StyleBox" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://addons/DialogCreator/GraphNodeBase.gd" type="Script" id=7]
+
+[node name="DialogCreator" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GraphNodeBase" type="GraphNode" parent="GraphEdit"]
+margin_left = 200.0
+margin_top = 50.0
+margin_right = 364.0
+margin_bottom = 174.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 5 )
+custom_colors/close_color = Color( 1, 1, 1, 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+custom_colors/resizer_color = Color( 1, 1, 1, 1 )
+custom_constants/close_offset = 22
+custom_constants/title_offset = 22
+title = "Test Node "
+offset = Vector2( 200, 50 )
+show_close = true
+resizable = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 0.0784314, 1, 0, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0.101961, 1, 0, 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GraphEdit/GraphNodeBase"]
+margin_left = 23.0
+margin_right = 187.0
+margin_bottom = 124.0
+mouse_filter = 2
+custom_constants/margin_right = 50
+custom_constants/margin_top = 8
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="GraphEdit/GraphNodeBase/MarginContainer"]
+margin_left = 50.0
+margin_top = 8.0
+margin_right = 114.0
+margin_bottom = 116.0
+mouse_filter = 2
+
+[node name="Control" type="VBoxContainer" parent="GraphEdit/GraphNodeBase/MarginContainer/CenterContainer"]
+margin_right = 64.0
+margin_bottom = 108.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 8
+
+[node name="Label" type="Label" parent="GraphEdit/GraphNodeBase/MarginContainer/CenterContainer/Control"]
+margin_right = 64.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "asdasd"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="GraphEdit/GraphNodeBase/MarginContainer/CenterContainer/Control"]
+margin_top = 22.0
+margin_right = 64.0
+margin_bottom = 86.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label2" type="Label" parent="GraphEdit/GraphNodeBase/MarginContainer/CenterContainer/Control"]
+margin_top = 94.0
+margin_right = 64.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "asdasd"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Toolbar" type="Control" parent="."]
+anchor_right = 1.0
+margin_bottom = 41.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="Toolbar"]
+margin_left = 230.85
+margin_top = 11.8
+margin_right = 348.85
+margin_bottom = 31.8
+text = "Load"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="Toolbar"]
+margin_left = 358.15
+margin_top = 11.8
+margin_right = 476.15
+margin_bottom = 31.8
+text = "Save"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewNode" type="Button" parent="Toolbar"]
+margin_left = 489.25
+margin_top = 11.8
+margin_right = 607.25
+margin_bottom = 31.8
+text = "New Node"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

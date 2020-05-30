@@ -1,0 +1,263 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeText.gd" type="Script" id=1]
+
+
+[node name="graphNodeText" type="GraphNode"]
+self_modulate = Color( 0, 1, 0.929412, 1 )
+margin_right = 267.0
+margin_bottom = 365.0
+title = "Text"
+show_close = true
+resizable = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 0, 0.905882, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0, 0.882353, 1, 1 )
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color( 1, 1, 1, 1 )
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color( 1, 1, 1, 1 )
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color( 1, 1, 1, 1 )
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color( 1, 1, 1, 1 )
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color( 1, 1, 1, 1 )
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color( 1, 1, 1, 1 )
+slot/5/left_enabled = false
+slot/5/left_type = 0
+slot/5/left_color = Color( 1, 1, 1, 1 )
+slot/5/right_enabled = false
+slot/5/right_type = 0
+slot/5/right_color = Color( 1, 1, 1, 1 )
+slot/6/left_enabled = false
+slot/6/left_type = 0
+slot/6/left_color = Color( 1, 1, 1, 1 )
+slot/6/right_enabled = false
+slot/6/right_type = 0
+slot/6/right_color = Color( 1, 1, 1, 1 )
+slot/7/left_enabled = false
+slot/7/left_type = 0
+slot/7/left_color = Color( 1, 1, 1, 1 )
+slot/7/right_enabled = false
+slot/7/right_type = 0
+slot/7/right_color = Color( 1, 1, 1, 1 )
+slot/8/left_enabled = false
+slot/8/left_type = 0
+slot/8/left_color = Color( 1, 1, 1, 1 )
+slot/8/right_enabled = false
+slot/8/right_type = 0
+slot/8/right_color = Color( 1, 1, 1, 1 )
+slot/9/left_enabled = false
+slot/9/left_type = 0
+slot/9/left_color = Color( 1, 1, 1, 1 )
+slot/9/right_enabled = false
+slot/9/right_type = 0
+slot/9/right_color = Color( 1, 1, 1, 1 )
+slot/10/left_enabled = false
+slot/10/left_type = 0
+slot/10/left_color = Color( 1, 1, 1, 1 )
+slot/10/right_enabled = false
+slot/10/right_type = 0
+slot/10/right_color = Color( 1, 1, 1, 1 )
+slot/11/left_enabled = false
+slot/11/left_type = 0
+slot/11/left_color = Color( 1, 1, 1, 1 )
+slot/11/right_enabled = false
+slot/11/right_type = 0
+slot/11/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control3" type="Control" parent="."]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 251.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="speakerDescription" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 30.0
+margin_right = 251.0
+margin_bottom = 44.0
+size_flags_vertical = 1
+text = "Speaker"
+
+[node name="player" type="CheckBox" parent="."]
+margin_left = 16.0
+margin_top = 45.0
+margin_right = 251.0
+margin_bottom = 69.0
+shortcut_in_tooltip = false
+text = "Player"
+
+[node name="dialogPartner" type="CheckBox" parent="."]
+margin_left = 16.0
+margin_top = 70.0
+margin_right = 251.0
+margin_bottom = 94.0
+shortcut_in_tooltip = false
+text = "Dialog Partner"
+
+[node name="hBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 95.0
+margin_right = 251.0
+margin_bottom = 119.0
+
+[node name="custom" type="CheckBox" parent="hBoxContainer"]
+margin_right = 24.0
+margin_bottom = 24.0
+align = 2
+
+[node name="speaker" type="OptionButton" parent="hBoxContainer"]
+margin_left = 28.0
+margin_right = 235.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Control2" type="Control" parent="."]
+margin_left = 16.0
+margin_top = 120.0
+margin_right = 251.0
+margin_bottom = 139.76
+rect_min_size = Vector2( 0, 19.76 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 140.0
+margin_right = 251.0
+margin_bottom = 218.0
+
+[node name="EnableBust" type="CheckBox" parent="VBoxContainer"]
+margin_right = 235.0
+margin_bottom = 24.0
+pressed = true
+text = "Enable Bust"
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 235.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 34.0
+margin_right = 235.0
+margin_bottom = 78.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 69.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 69.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Name"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 69.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Expression"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 73.0
+margin_right = 235.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="BustName" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 162.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FacialExpression" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 162.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="."]
+margin_left = 16.0
+margin_top = 219.0
+margin_right = 251.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 0, 14 )
+
+[node name="textDescription" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 234.0
+margin_right = 251.0
+margin_bottom = 248.0
+size_flags_vertical = 1
+text = "Text"
+
+[node name="Language" type="OptionButton" parent="."]
+margin_left = 16.0
+margin_top = 249.0
+margin_right = 61.0
+margin_bottom = 269.0
+size_flags_horizontal = 0
+text = "de"
+items = [ "de", null, false, 0, null, "en", null, false, 1, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control4" type="Control" parent="."]
+margin_left = 16.0
+margin_top = 270.0
+margin_right = 251.0
+margin_bottom = 275.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="text" type="TextEdit" parent="."]
+margin_left = 16.0
+margin_top = 276.0
+margin_right = 251.0
+margin_bottom = 351.0
+rect_min_size = Vector2( 0, 75 )
+smooth_scrolling = true
+wrap_enabled = true
+[connection signal="close_request" from="." to="." method="_on_graphNode_close_request"]
+[connection signal="resize_request" from="." to="." method="_on_graphNode_resize_request"]
+[connection signal="pressed" from="player" to="." method="_on_player_pressed"]
+[connection signal="pressed" from="dialogPartner" to="." method="_on_dialogPartner_pressed"]
+[connection signal="pressed" from="hBoxContainer/custom" to="." method="_on_custom_pressed"]
+[connection signal="item_selected" from="hBoxContainer/speaker" to="." method="_on_speaker_item_selected"]
+[connection signal="pressed" from="VBoxContainer/EnableBust" to="." method="_on_EnableBust_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/VBoxContainer2/BustName" to="." method="_on_BustName_item_selected"]
+[connection signal="item_selected" from="Language" to="." method="_on_Language_item_selected"]
+[connection signal="text_changed" from="text" to="." method="_on_text_text_changed"]

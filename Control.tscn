@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/Dialogbox/Dialogbox.gd" type="Script" id=1]
+[ext_resource path="res://addons/Dialogbox/resources/Dialogbox.png" type="Texture" id=2]
+
+[node name="Control" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogbox" type="NinePatchRect" parent="."]
+margin_right = 478.0
+margin_bottom = 164.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text = [ "asdasdasdasdasda
+sd
+a
+sda
+a
+sdf
+asd
+f
+asdf
+", "asdasd", "dasasdasd", "asd", "asdasdasd", "asdasd", "as", "dasd", "asdasd" ]
+input_trigger = "ui_up"

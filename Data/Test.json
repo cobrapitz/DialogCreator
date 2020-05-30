@@ -1,0 +1,64 @@
+{
+    "Test": {
+        "0": {
+            "bust_expression": "sad",
+            "bust_name": "NPC2",
+            "h": 365,
+            "next": "2",
+            "speaker": "",
+            "text": {},
+            "type": "Text",
+            "w": 267,
+            "x": 320,
+            "y": 220
+        },
+        "1": {
+            "entry": "0",
+            "h": 63,
+            "next": "0",
+            "type": "Entry Point",
+            "w": 113,
+            "x": 60,
+            "y": 220
+        },
+        "2": {
+            "h": 49,
+            "type": "End",
+            "w": 111,
+            "x": 780,
+            "y": 220
+        },
+        "currentBegin": "1"
+    },
+    "Test2": {
+        "0": {
+            "bust_expression": "happy",
+            "bust_name": "NPC",
+            "h": 365,
+            "next": "2",
+            "speaker": "",
+            "text": {},
+            "type": "Text",
+            "w": 267,
+            "x": 320,
+            "y": 220
+        },
+        "1": {
+            "entry": "0",
+            "h": 63,
+            "next": "0",
+            "type": "Entry Point",
+            "w": 113,
+            "x": 60,
+            "y": 220
+        },
+        "2": {
+            "h": 49,
+            "type": "End",
+            "w": 111,
+            "x": 780,
+            "y": 220
+        },
+        "currentBegin": "1"
+    }
+}
