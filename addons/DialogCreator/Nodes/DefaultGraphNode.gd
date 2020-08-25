@@ -1,7 +1,6 @@
 extends GraphNode
-
 class_name DefaultGraphNode
-
+tool
 var _type
 
 

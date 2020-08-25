@@ -1,15 +1,16 @@
 extends GraphEdit
 tool
 
+
 var start_node
 
 func _ready():
-	init()
-	connect_signals()
+	pass
 
 
 func _enter_tree() -> void:
-	pass
+	init()
+	connect_signals()
 
 
 func _exit_tree() -> void:
@@ -17,6 +18,9 @@ func _exit_tree() -> void:
 
 
 ### INIT
+
+func _process(delta: float) -> void:
+	pass
 
 
 func init():

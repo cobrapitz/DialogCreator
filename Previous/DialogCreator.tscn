@@ -230,8 +230,8 @@ func _create_node(type, size = Vector2(-1.0, -1.0), position = $graphEdit.scroll
 			var child = $graphEdit.get_child(i)
 			if child.get_class() == \"GraphNode\" and child.get_type() == \"Event\":
 				var entries = []
-				for i in range($startNode.get_popup().get_item_count()):
-					entries.append($startNode.get_popup().get_item_text(i))
+				for d in range($startNode.get_popup().get_item_count()):
+					entries.append($startNode.get_popup().get_item_text(d))
 				child.clear_item_suggestions(\"Set Entry\")
 				child.set_item_suggestions(\"Set Entry\", entries, 0)
 #				if child.get_selected_key() == \"Set Entry\":
@@ -289,13 +289,13 @@ func _on_graphEdit_disconnection_request(from, from_slot, to, to_slot):
 		if con[0] == str(from) and con[1] == from_slot and con[2] == str(to) and con[3] == to_slot:
 			_allConnections.remove(i)
 			
-			for i in range(_allNodes.size()):
-				if _allNodes[_allNodes.keys()[i]].name == from:
+			for d in range(_allNodes.size()):
+				if _allNodes[_allNodes.keys()[d]].name == from:
 					# TODO add function to give node name and slot to remove connection
-					if _allNodes[_allNodes.keys()[i]]._type == \"Decision\":
+					if _allNodes[_allNodes.keys()[d]]._type == \"Decision\":
 						break
 					
-					_allNodes[_allNodes.keys()[i]].next = \"\"
+					_allNodes[_allNodes.keys()[d]].next = \"\"
 			
 			break
 		#_allConnections.append([str(c-1), 0, dial.next, 0])
@@ -377,8 +377,8 @@ func _on_saveFileDialog_file_selected(filePath):
 					newDialog[\"entry\"] = node.get_entry()
 					newDialog[\"next\"] = \"\"
 					var connectionList = $graphEdit.get_connection_list()
-					for i in range(connectionList.size()):
-						var connection = connectionList[i]
+					for d in range(connectionList.size()):
+						var connection = connectionList[d]
 						var from = connection[connection.keys()[0]]
 						var to = connection[connection.keys()[2]]
 						if from == node.name:
@@ -390,8 +390,8 @@ func _on_saveFileDialog_file_selected(filePath):
 					newDialog[\"text\"] = node.get_texts()
 					newDialog[\"speaker\"] = node.get_speaker()
 					var choices = {}
-					for i in range(node.get_decision_amount()):
-						var decisionText = node.get_decision_text(i)
+					for d in range(node.get_decision_amount()):
+						var decisionText = node.get_decision_text(d)
 						var connectionList = $graphEdit.get_connection_list()
 						var next
 						for k in range(connectionList.size()):
@@ -399,9 +399,9 @@ func _on_saveFileDialog_file_selected(filePath):
 							var from = connection[connection.keys()[0]]
 							var to = connection[connection.keys()[2]]
 							if from == node.name:
-								if connection[connection.keys()[1]] == i:
+								if connection[connection.keys()[1]] == d:
 									next = to
-						choices[str(i)] = { \"next\" : str(next), \"text\" : decisionText}
+						choices[str(d)] = { \"next\" : str(next), \"text\" : decisionText}
 					newDialog[\"choices\"] = choices
 					
 				\"End\":
@@ -414,8 +414,8 @@ func _on_saveFileDialog_file_selected(filePath):
 					newDialog[\"bust_expression\"] = node.get_bust_expression()
 					newDialog[\"next\"] = \"\"
 					var connectionList = $graphEdit.get_connection_list()
-					for i in range(connectionList.size()):
-						var connection = connectionList[i]
+					for d in range(connectionList.size()):
+						var connection = connectionList[d]
 						var from = connection[connection.keys()[0]]
 						var to = connection[connection.keys()[2]]
 						if from == node.name:
@@ -426,8 +426,8 @@ func _on_saveFileDialog_file_selected(filePath):
 					var next_success = \"\"
 					var next_failure = \"\"
 					var connectionList = $graphEdit.get_connection_list()
-					for i in range(connectionList.size()):
-						var connection = connectionList[i]
+					for d in range(connectionList.size()):
+						var connection = connectionList[d]
 						var from = connection[connection.keys()[0]]
 						var to = connection[connection.keys()[2]]
 						if from == node.name:
@@ -436,9 +436,9 @@ func _on_saveFileDialog_file_selected(filePath):
 							else:
 								next_failure = to
 					var event_params = {}
-					for i in range(node.get_event_param_amount()):
-						var val = node.get_event_param(i)
-						event_params[str(i)] = val
+					for d in range(node.get_event_param_amount()):
+						var val = node.get_event_param(d)
+						event_params[str(d)] = val
 
 					newDialog[\"event_params\"] = event_params
 					newDialog[\"next_success\"] = next_success

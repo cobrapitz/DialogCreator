@@ -24,9 +24,14 @@ config/name="DialogCreator"
 run/main_scene="res://Previous/DialogCreator.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1440
+window/size/height=900
+
 [editor_plugins]
 
-enabled=PoolStringArray( "DialogCreator", "Dialogbox", "godot-plugin-refresher" )
+enabled=PoolStringArray( "DialogCreator", "godot-plugin-refresher" )
 
 [rendering]
 

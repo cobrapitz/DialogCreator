@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://addons/DialogCreator/Styles/DialogCreator_ToolbarButtonStyle.tres" type="StyleBox" id=1]
 [ext_resource path="res://addons/DialogCreator/GraphEdit.gd" type="Script" id=2]
+[ext_resource path="res://addons/DialogCreator/Styles/DialogCreator_ToolbarOptionButtonStyle.tres" type="StyleBox" id=3]
+[ext_resource path="res://addons/DialogCreator/Styles/DialogCreator_ToolbarBackgroundStyle.tres" type="StyleBox" id=4]
+[ext_resource path="res://addons/DialogCreator/Styles/DialogCreator_SidebarBackgroundStyle.tres" type="StyleBox" id=5]
 [ext_resource path="res://addons/DialogCreator/DialogCreator.gd" type="Script" id=6]
+[ext_resource path="res://addons/DialogCreator/Styles/DC_SidebarInnerBackgroundStyle.tres" type="StyleBox" id=7]
+[ext_resource path="res://addons/DialogCreator/Styles/DC_SidebarInfoBackgroundStyle.tres" type="StyleBox" id=8]
+[ext_resource path="res://addons/DialogCreator/Styles/DC_SidebarNodeButtonStyle.tres" type="StyleBox" id=9]
+[ext_resource path="res://addons/DialogCreator/Styles/DC_BackgroundStyle.tres" type="StyleBox" id=10]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.1344, 0.15582, 0.21, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.12549, 0.141176, 0.192157, 1 )
 
 [node name="DialogCreator" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_vertical = 3
 script = ExtResource( 6 )
 __meta__ = {
@@ -13,57 +28,374 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GraphEdit" type="GraphEdit" parent="."]
+[node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
+mouse_filter = 2
+custom_styles/panel = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+mouse_filter = 2
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Toolbar" type="Control" parent="."]
+[node name="Sidebar" type="Control" parent="Panel/HBoxContainer"]
+margin_right = 237.0
+margin_bottom = 890.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="Panel/HBoxContainer/Sidebar"]
 anchor_right = 1.0
-margin_bottom = 41.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Sidebar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Load" type="Button" parent="Toolbar"]
-margin_left = 230.85
-margin_top = 11.8
-margin_right = 348.85
-margin_bottom = 31.8
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/Sidebar/VBoxContainer"]
+margin_right = 237.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="Panel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer"]
+margin_right = 237.0
+margin_bottom = 55.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HideSidebar" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer/Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+text = "<<<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer/Sidebar/VBoxContainer"]
+margin_top = 55.0
+margin_right = 237.0
+margin_bottom = 890.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 15.0
+
+[node name="Background" type="Panel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2"]
+margin_right = 237.0
+margin_bottom = 835.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2"]
+margin_right = 237.0
+margin_bottom = 835.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer"]
+margin_right = 237.0
+margin_bottom = 503.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.83
+custom_styles/panel = ExtResource( 8 )
+
+[node name="Background2" type="Panel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer"]
+margin_top = 503.0
+margin_right = 237.0
+margin_bottom = 778.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entry" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2/VBoxContainer"]
+margin_right = 237.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 9 )
+text = "Entry"
+
+[node name="Message" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2/VBoxContainer"]
+margin_top = 46.0
+margin_right = 237.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 9 )
+text = "Message"
+
+[node name="Event" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2/VBoxContainer"]
+margin_top = 93.0
+margin_right = 237.0
+margin_bottom = 135.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 9 )
+text = "Event"
+
+[node name="Condition" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2/VBoxContainer"]
+margin_top = 140.0
+margin_right = 237.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 9 )
+text = "Condition"
+
+[node name="Comment" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2/VBoxContainer"]
+margin_top = 186.0
+margin_right = 237.0
+margin_bottom = 228.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 9 )
+text = "Comment"
+
+[node name="Exit" type="Button" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background2/VBoxContainer"]
+margin_top = 233.0
+margin_right = 237.0
+margin_bottom = 275.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 9 )
+text = "Exit"
+
+[node name="Control" type="Control" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer"]
+margin_top = 778.0
+margin_right = 237.0
+margin_bottom = 788.0
+rect_min_size = Vector2( 0, 10 )
+mouse_filter = 2
+
+[node name="Background" type="Panel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.79
+custom_styles/panel = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background3" type="Panel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer"]
+margin_top = 788.0
+margin_right = 237.0
+margin_bottom = 835.0
+rect_min_size = Vector2( 0, 26.083 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.17
+custom_styles/panel = SubResource( 2 )
+
+[node name="VersionLabel" type="RichTextLabel" parent="Panel/HBoxContainer/Sidebar/VBoxContainer/MarginContainer2/VBoxContainer/Background3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "[center]Version - 0.1[/center]"
+text = "Version - 0.1"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+margin_left = 241.0
+margin_right = 1430.0
+margin_bottom = 890.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Toolbar" type="Control" parent="Panel/HBoxContainer/VBoxContainer"]
+margin_right = 1189.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Toolbar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/Toolbar"]
+anchor_left = 0.025
+anchor_top = 0.2
+anchor_right = 0.975
+anchor_bottom = 0.8
+mouse_filter = 2
+custom_constants/separation = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/Toolbar/HBoxContainer"]
+margin_right = 1022.0
+margin_bottom = 30.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+custom_constants/separation = 15
+
+[node name="Load" type="Button" parent="Panel/HBoxContainer/VBoxContainer/Toolbar/HBoxContainer/HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 2
+custom_styles/normal = ExtResource( 1 )
 text = "Load"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Save" type="Button" parent="Toolbar"]
-margin_left = 358.15
-margin_top = 11.8
-margin_right = 476.15
-margin_bottom = 31.8
+[node name="Save" type="Button" parent="Panel/HBoxContainer/VBoxContainer/Toolbar/HBoxContainer/HBoxContainer"]
+margin_left = 139.0
+margin_right = 259.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 2
+custom_styles/normal = ExtResource( 1 )
 text = "Save"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewNode" type="Button" parent="Toolbar"]
-margin_left = 489.25
-margin_top = 11.8
-margin_right = 607.25
-margin_bottom = 31.8
-text = "New Node"
+[node name="Control" type="Control" parent="Panel/HBoxContainer/VBoxContainer/Toolbar/HBoxContainer/HBoxContainer"]
+margin_left = 278.0
+margin_right = 1022.0
+margin_bottom = 30.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="Language" type="OptionButton" parent="Panel/HBoxContainer/VBoxContainer/Toolbar/HBoxContainer"]
+margin_left = 1026.0
+margin_right = 1129.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = ExtResource( 3 )
+text = "DE"
+items = [ "DE", null, false, 0, null, "EN", null, false, 1, null ]
+selected = 0
+
+[node name="Main" type="Control" parent="Panel/HBoxContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 1189.0
+margin_bottom = 890.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 19.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GraphEdit" type="GraphEdit" parent="Panel/HBoxContainer/VBoxContainer/Main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Language" type="OptionButton" parent="Toolbar"]
-margin_left = 877.182
-margin_top = 11.8
-margin_right = 995.182
-margin_bottom = 31.8
-text = "DE"
-items = [ "DE", null, false, 0, null, "EN", null, false, 1, null ]
-selected = 0
+[node name="ShowSidebar" type="Button" parent="Panel/HBoxContainer/VBoxContainer/Main"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 19.0
+margin_top = -52.0
+margin_right = 107.0
+margin_bottom = -22.0
+rect_min_size = Vector2( 0, 30 )
+custom_styles/normal = ExtResource( 1 )
+text = ">>>"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
