@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeStart.gd" type="Script" id=1]
 
-[node name="graphNodeStart" type="GraphNode"]
+[node name="GraphNodeStart" type="GraphNode"]
 self_modulate = Color( 1, 0, 0.890196, 1 )
 margin_top = -1.0
 margin_right = 169.0
@@ -27,20 +27,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="start" type="Label" parent="."]
+[node name="Start" type="Label" parent="."]
 margin_left = 16.0
 margin_top = 24.0
 margin_right = 153.0
 margin_bottom = 38.0
 text = "Start"
 
-[node name="hBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 16.0
 margin_top = 39.0
 margin_right = 153.0
 margin_bottom = 57.0
 
-[node name="entryDescription" type="Label" parent="hBoxContainer"]
+[node name="EntryDescription" type="Label" parent="HBoxContainer"]
 margin_right = 69.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 0, 18 )
@@ -48,7 +48,7 @@ text = "EntryPoint:"
 align = 1
 valign = 2
 
-[node name="entry" type="Label" parent="hBoxContainer"]
+[node name="Entry" type="Label" parent="HBoxContainer"]
 margin_left = 73.0
 margin_right = 81.0
 margin_bottom = 18.0

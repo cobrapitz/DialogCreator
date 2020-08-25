@@ -1,10 +1,15 @@
 extends GraphEdit
+tool
 
 var start_node
 
-func _enter_tree():
+func _ready():
 	init()
 	connect_signals()
+
+
+func _enter_tree() -> void:
+	pass
 
 
 func _exit_tree() -> void:

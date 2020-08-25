@@ -1,38 +1,31 @@
+extends Control
 tool
-extends EditorPlugin
-
-
-const MainPanel = preload("res://addons/DialogCreator/DialogCreator.tscn")
-
-var main_panel_instance
 
 
 func _enter_tree():
-	main_panel_instance = MainPanel.instance()
-	# Add the main panel to the editor's main viewport.
-	get_editor_interface().get_editor_viewport().add_child(main_panel_instance)
-	# Hide the main panel. Very much required.
-	make_visible(false)
+	print("ready")
+	$Toolbar/NewNode.connect("pressed", self, "_new_node_pressed")
+	$Toolbar/Load.connect("pressed", self, "_load_pressed")
+	$Toolbar/Save.connect("pressed", self, "_save_pressed")
+	$Toolbar/Language.connect("item_selected", self, "_language_selected")
 
 
-func _exit_tree():
-	if main_panel_instance:
-		main_panel_instance.queue_free()
+func _exit_tree() -> void:
+	pass
 
 
-func has_main_screen():
-	return true
+func _new_node_pressed():
+	print("new node")
 
 
-func make_visible(visible):
-	if main_panel_instance:
-		main_panel_instance.visible = visible
+func _load_pressed():
+	print("load")
 
 
-func get_plugin_name():
-	return "Dialog Creator"
+func _save_pressed():
+	print("save")
 
 
-func get_plugin_icon():
-	# Must return some kind of Texture for the icon.
-	return get_editor_interface().get_base_control().get_icon("GraphEdit", "EditorIcons")
+func _language_selected(id):
+	print("language id ", id)
+

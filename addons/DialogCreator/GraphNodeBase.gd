@@ -21,6 +21,7 @@ func connect_signals():
 
 func close_request() -> void:
 	print("close req")
+	call_deferred("free")
 
 
 func dragged(from: Vector2, to: Vector2) -> void:
@@ -36,4 +37,4 @@ func raise_request() -> void:
 
 
 func resize_request(new_minsize: Vector2) -> void:
-	print("resize req")
+	rect_size = new_minsize
