@@ -1,7 +1,8 @@
 extends GraphNode
 class_name DefaultGraphNode
-tool
-var _type
+
+var next : Array = []
+var id : int
 
 
 func _ready():
@@ -16,9 +17,11 @@ func _on_graphNode_close_request():
 	queue_free()
 
 
-func set_type(type):
-	_type = type
+func get_save_data() -> Dictionary:
+	print("no overwrite")
+	return {}
 
 
-func get_type():
-	return _type
+func set_from_load_data(data : Dictionary):
+	print("no overwrite")
+

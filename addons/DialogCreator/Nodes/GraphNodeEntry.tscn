@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeEntry.gd" type="Script" id=1]
+[ext_resource path="res://addons/DialogCreator/Styles/DC_NodeOptionButtonStyle.tres" type="StyleBox" id=2]
+[ext_resource path="res://addons/DialogCreator/Resources/OptionButtonMark.png" type="Texture" id=3]
+[ext_resource path="res://addons/DialogCreator/Styles/FrameBase.tres" type="StyleBox" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.368627, 0.368627, 0.368627, 0.756863 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color( 0, 0, 0, 0.0941176 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.333333, 0.333333, 0.333333, 0.247059 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color( 0, 0, 0, 0.0941176 )
+
+[node name="GraphNodeEntry" type="GraphNode"]
+margin_left = 11.0
+margin_top = 8.0
+margin_right = 244.0
+margin_bottom = 214.0
+custom_styles/frame = ExtResource( 4 )
+custom_constants/close_offset = 22
+custom_constants/title_offset = 22
+title = "Entry"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 0.0784314, 1, 0, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0.101961, 1, 0, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="VBoxContainer" parent="."]
+margin_left = 23.0
+margin_right = 207.0
+margin_bottom = 89.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="MarginContainer"]
+margin_right = 184.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_top = 34.0
+margin_right = 184.0
+margin_bottom = 80.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 2.0
+margin_right = 182.0
+margin_bottom = 46.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/Control"]
+margin_left = 64.0
+margin_right = 115.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+text = "Entry ID"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/CenterContainer/Control"]
+margin_top = 22.0
+margin_right = 180.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 7
+custom_icons/arrow = ExtResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_constants/arrow_margin = 5
+text = "test"
+
+[node name="Control2" type="Control" parent="MarginContainer"]
+margin_top = 84.0
+margin_right = 184.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 0, 5 )
+mouse_filter = 2
+[connection signal="resize_request" from="." to="." method="_on_GraphNodeEntry_resize_request"]
