@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/DialogCreator/NodeFields/RichText.gd" type="Script" id=1]
+
+[node name="RichText" type="TextEdit" groups=[
+"expands",
+]]
+anchor_bottom = 0.0888889
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "asd"
+show_line_numbers = true
+draw_tabs = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}

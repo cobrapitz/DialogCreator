@@ -1,0 +1,150 @@
+{
+    "nodes": {
+        "Test": {
+            "Meta": {
+                "FrameColor": [0, 0, 1]
+            },
+            "0": {
+                "Slot": "inout",
+                "InputColor": [0, 0, 1],
+                "OutputColor": [0, 0.5, 0.5],
+                "Field": "Label",
+                "Default": "Entry Id"
+            },
+            "2": {
+                "Slot": "out",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Multi",
+                "Default": { "template": "Label" }
+            },
+            "3": {
+                "Slot": "out",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "RichText",
+                "Default": "test"
+            }
+        },
+        "Entry": {
+            "Meta": {
+                "FrameColor": [0, 1, 0]
+            },
+            "0": {
+                "Slot": "out",
+                "Field": "Label",
+                "InputColor": [0.5, 0, 1],
+                "OutputColor": [1, 0, 1],
+                "Default": "Entry Id"
+            }
+        },
+        "Exit": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Text": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Choice": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Condition": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Event": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Sound": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Music": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Comment": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        },
+        "Random Choice": {
+            "Meta": {
+                "FrameColor": [1, 0, 0]
+            },
+            "0": {
+                "Slot": "in",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "Field": "Label",
+                "Default": "Exit"
+            }
+        }
+    }
+}

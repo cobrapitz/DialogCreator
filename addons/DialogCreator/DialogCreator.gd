@@ -3,6 +3,26 @@ tool
 
 const VERSION = str("[center]Version - 1.0[/center]")
 
+const NODE_CONFIG_PATH = "res://addons/DialogCreator/nodes.json"
+
+
+const NODE_FIELDS = {
+	"Label": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
+	"RichText": preload("res://addons/DialogCreator/NodeFields/RichText.tscn"),
+	"Number_Input": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
+	"Text_Input": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
+	"Check_Button": preload("res://addons/DialogCreator/NodeFields/CheckButton.tscn"),
+	"Option_Button": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
+	"Multi": preload("res://addons/DialogCreator/NodeFields/Multi.tscn"),
+}
+
+const NodeBase = "res://addons/DialogCreator/Nodes/GraphNodeBase.tscn"
+
+var _node_names = []
+
+var _node_data
+
+
 var version_label
 
 var sidebar
@@ -24,20 +44,6 @@ var added_node
 var added_nodes = []
 var dragging = false
 
-var Nodes = {
-	"Entry" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Message" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Exit" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Event" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Condition" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Choice" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Signal" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Sound" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Music" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Random Choice" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-	"Comment" : preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
-}
-
 var _unique_node_id = 0
 
 var mouse_inside_graph_edit = false
@@ -46,9 +52,8 @@ func _ready():
 	pass
 
 
-func _enter_tree():
+func init():
 	graph_edit = find_node("GraphEdit")
-	
 	sidebar = find_node("Sidebar")
 	show_sidebar_button = find_node("ShowSidebar")
 	hide_sidebar_button = find_node("HideSidebar")
@@ -84,21 +89,35 @@ func _enter_tree():
 		node_button_container.remove_child(child)
 		child.free()
 	
-	for key in Nodes.keys():
+	var nodes_config = File.new()
+	nodes_config.open(NODE_CONFIG_PATH, File.READ)
+	_node_data = JSON.parse(nodes_config.get_as_text())
+	nodes_config.close()
+	if _node_data.error != OK:
+		printerr("Couldn't load file: ", NODE_CONFIG_PATH)
+		return
+	_node_data = _node_data.result
+	_node_names = _node_data.nodes.keys()
+	
+	for node_name in _node_names:
 		var button = Button.new()
 		node_button_container.add_child(button)
 		button.owner = self
-		button.text = key
-		button.set("custom_styles/normal", preload("res://addons/DialogCreator/Styles/DC_SidebarNodeButtonStyle.tres"))
+		button.text = node_name
+		var frame_color = _node_data.nodes[node_name].Meta.FrameColor
+		frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
+		
+		button.set("custom_styles/normal", preload("res://addons/DialogCreator/Styles/DC_SidebarNodeButtonStyle.tres").duplicate())
+		button.get("custom_styles/normal").set("border_color", frame_color)
 		button.size_flags_horizontal = button.SIZE_EXPAND_FILL
-		button.size_flags_vertical = button.SIZE_EXPAND_FILL
-		button.connect("button_down", self, "_on_node_button_down", [key])
+		#button.size_flags_vertical = button.SIZE_EXPAND_FILL
+		button.rect_min_size = Vector2(0.0, 35.0)
+		button.connect("button_down", self, "_on_node_button_down", [node_name])
 	
 	hide_sidebar_button.connect("pressed", self, "_hide_sidebar_pressed")
 	show_sidebar_button.connect("pressed", self, "_show_sidebar_pressed")
 	
-	graph_edit.connect("mouse_entered", self, "_on_GraphEdit_mouse_entered")
-	graph_edit.connect("mouse_exited", self, "_on_GraphEdit_mouse_exited")
+	find_node("Scroll").init()
 
 
 func _exit_tree() -> void:
@@ -118,7 +137,6 @@ func _process(delta: float) -> void:
 		added_node.offset.y = int(added_node.offset.y) * graph_edit.snap_distance
 		
 		added_node.offset *= 1 / graph_edit.zoom
-		
 
 
 func _input(event: InputEvent) -> void:
@@ -127,14 +145,6 @@ func _input(event: InputEvent) -> void:
 			if dragging:
 				added_node.selected = false
 				dragging = false
-	
-	if is_visible_in_tree() and mouse_inside_graph_edit:
-		if Input.is_mouse_button_pressed(BUTTON_WHEEL_UP):
-			graph_edit.zoom += 0.1
-			accept_event()
-		if Input.is_mouse_button_pressed(BUTTON_WHEEL_DOWN):
-			graph_edit.zoom -= 0.1
-			accept_event()
 
 
 func save_dialog(path : String):
@@ -151,8 +161,6 @@ func save_dialog(path : String):
 func load_dialog(path : String):
 	print("loading file from: ", path)
 	
-	clear_existing_nodes()
-	
 	var file = File.new()
 	file.open(path, File.READ)
 	var data = JSON.parse(file.get_as_text())
@@ -162,6 +170,8 @@ func load_dialog(path : String):
 		printerr("Couldn't load file: ", path)
 		return
 	data = data.result
+	
+	clear_existing_nodes()
 	
 	# editor settings
 	graph_edit.zoom = data.editor.zoom
@@ -204,23 +214,63 @@ func _get_save_data() -> String:
 
 
 func clear_existing_nodes():
+	print("clear: ", added_nodes.size())
 	for node in added_nodes:
-		node.get_parent().remove_child(node)
-		node.queue_free()
+		node.free()
+	added_nodes.clear()
 
 
 # SIGNALS
 
 
 func create_new_node(type : String):
-	added_node = Nodes[type].instance()
+	var node_data = _node_data.nodes[type]
+	
+	added_node = preload(NodeBase).instance()
 	graph_edit.add_child(added_node)
+	added_node.set_owner(self)
+	
+	for field_key in node_data.keys():
+		if field_key == "Meta":
+			continue
+		
+		var field_data = node_data[field_key]
+		
+		var field_type = field_data.Field
+		var slot = field_data.Slot.to_lower()
+		var default_value = field_data.Default
+		var input_color = field_data.InputColor
+		var output_color = field_data.OutputColor
+		
+		input_color = Color(input_color[0], input_color[1], input_color[2])
+		output_color = Color(output_color[0], output_color[1], output_color[2])
+		
+		var new_field = NODE_FIELDS[field_type].instance()
+		
+		var has_input = "in" in slot
+		var has_output = "out" in slot
+		
+		added_node.add_field(field_type, new_field, has_input, has_output, input_color, output_color)
+		new_field.set_owner(graph_edit)
+		
+		new_field.init_field(default_value)
+		
+	
+	#for field in added_node._fields:
+	#	field.init_field(custom_nodes[type]._data)
+	var frame_color = node_data.Meta.FrameColor
+	frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
+	
+	added_node._set_frame_color(frame_color)
+	added_node.set_title(type)
+	
 	added_nodes.append(added_node)
+	
 	return added_node
 
 
 func _on_node_button_down(type : String):
-	if not Nodes.has(type):
+	if not _node_names.has(type):
 		print("Node type %s doesn't exist!" % type)
 		return
 	
@@ -268,13 +318,3 @@ func _get_move_input() -> Vector2:
 	return Vector2(
 			int(Input.is_action_pressed("key_right")) - int(Input.is_action_pressed("key_left")),
 			int(Input.is_action_pressed("key_down")) - int(Input.is_action_pressed("key_up")))
-
-
-
-func _on_GraphEdit_mouse_entered() -> void:
-	mouse_inside_graph_edit = true
-
-
-func _on_GraphEdit_mouse_exited() -> void:
-	mouse_inside_graph_edit = false
-

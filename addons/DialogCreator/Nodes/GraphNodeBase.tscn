@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeBase.gd" type="Script" id=1]
+[ext_resource path="res://addons/DialogCreator/Styles/FrameBase.tres" type="StyleBox" id=4]
+
+[node name="GraphNodeBase" type="GraphNode"]
+margin_left = 11.0
+margin_top = 8.0
+margin_right = 211.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 200, 120 )
+custom_styles/frame = ExtResource( 4 )
+custom_constants/close_offset = 22
+custom_constants/title_offset = 22
+title = "Entry"
+show_close = true
+resizable = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

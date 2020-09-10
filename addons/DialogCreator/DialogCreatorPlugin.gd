@@ -9,9 +9,18 @@ var main_panel_instance
 
 func _enter_tree():
 	main_panel_instance = MainPanel.instance()
+	
+	if get_editor_interface().get_editor_viewport().has_node("DialogCreator"):
+		var n = get_editor_interface().get_editor_viewport().get_node("DialogCreator")
+		n.name = "mehl1"
+		n.queue_free()
+	
 	# Add the main panel to the editor's main viewport.
-	get_editor_interface().get_editor_viewport().add_child(main_panel_instance)
+	get_editor_interface().get_editor_viewport().add_child(main_panel_instance, true)
 	main_panel_instance.owner = get_editor_interface().get_editor_viewport()
+	
+	main_panel_instance.init()
+	
 	# Hide the main panel. Very much required.
 	make_visible(false)
 

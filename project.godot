@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "GraphNode",
 "class": "DefaultGraphNode",
 "language": "GDScript",
-"path": "res://addons/DialogCreator/Nodes/DefaultGraphNode.gd"
+"path": "res://addons/DialogCreator/Nodes/GraphNodeBase.gd"
 } ]
 _global_script_class_icons={
 "DefaultGraphNode": ""

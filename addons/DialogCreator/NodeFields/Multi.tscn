@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/DialogCreator/NodeFields/Multi.gd" type="Script" id=1]
+
+[node name="Multi" type="VBoxContainer"]
+anchor_right = 0.0138889
+anchor_bottom = 0.0222222
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Add" type="Button" parent="."]
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+text = "+"
