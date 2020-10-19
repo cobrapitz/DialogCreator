@@ -107,7 +107,8 @@ func init():
 		var frame_color = _node_data.nodes[node_name].Meta.FrameColor
 		frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
 		
-		button.set("custom_styles/normal", preload("res://addons/DialogCreator/Styles/DC_SidebarNodeButtonStyle.tres").duplicate())
+		button.set("custom_styles/normal", 
+				preload("res://addons/DialogCreator/Styles/DC_SidebarNodeButtonStyle.tres").duplicate())
 		button.get("custom_styles/normal").set("border_color", frame_color)
 		button.size_flags_horizontal = button.SIZE_EXPAND_FILL
 		#button.size_flags_vertical = button.SIZE_EXPAND_FILL
@@ -149,12 +150,9 @@ func _input(event: InputEvent) -> void:
 
 func save_dialog(path : String):
 	print("saving file to: ", path)
-	
-	var data = _get_save_data()
-	
 	var file = File.new()
 	file.open(path, File.WRITE_READ)
-	file.store_string(data)
+	file.store_string(_get_save_data())
 	file.close()
 
 
@@ -185,7 +183,7 @@ func load_dialog(path : String):
 		node_data["internal"] = data.internal[key]
 		
 		var node = create_new_node(data.internal[key].type)
-		node.set_from_load_data(node_data)
+		node.load_data(node_data)
 		
 		var id = int(data.internal[key].id)
 		if id >= _unique_node_id:
@@ -206,10 +204,9 @@ func _get_save_data() -> String:
 	data.editor["scrolly"] = graph_edit.scroll_offset.y
 	
 	for node in added_nodes:
-		var node_data = node.get_save_data()
-		data.meta[node.id] = node_data.meta
-		data.internal[node.id] = node_data.internal
-	
+		var save_data = node.get_save_data()
+		data.meta[node.id] = save_data.meta
+		data.internal[node.id] = save_data.internal
 	return JSON.print(data)
 
 
@@ -224,40 +221,15 @@ func clear_existing_nodes():
 
 
 func create_new_node(type : String):
+	print("Create new node: ", type)
 	var node_data = _node_data.nodes[type]
 	
 	added_node = preload(NodeBase).instance()
 	graph_edit.add_child(added_node)
 	added_node.set_owner(self)
 	
-	for field_key in node_data.keys():
-		if field_key == "Meta":
-			continue
-		
-		var field_data = node_data[field_key]
-		
-		var field_type = field_data.Field
-		var slot = field_data.Slot.to_lower()
-		var default_value = field_data.Default
-		var input_color = field_data.InputColor
-		var output_color = field_data.OutputColor
-		
-		input_color = Color(input_color[0], input_color[1], input_color[2])
-		output_color = Color(output_color[0], output_color[1], output_color[2])
-		
-		var new_field = NODE_FIELDS[field_type].instance()
-		
-		var has_input = "in" in slot
-		var has_output = "out" in slot
-		
-		added_node.add_field(field_type, new_field, has_input, has_output, input_color, output_color)
-		new_field.set_owner(graph_edit)
-		
-		new_field.init_field(default_value)
-		
+	added_node.add_field(node_data)
 	
-	#for field in added_node._fields:
-	#	field.init_field(custom_nodes[type]._data)
 	var frame_color = node_data.Meta.FrameColor
 	frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
 	

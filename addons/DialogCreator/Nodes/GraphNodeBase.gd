@@ -9,8 +9,9 @@ var _fields = {}
 
 
 func _enter_tree():
-	connect("resize_request", self, "_on_graphNode_resize_request")
-	connect("close_request", self, "_on_graphNode_close_request")
+	if not is_connected("resize_request", self, "_on_graphNode_resize_request"):
+		connect("resize_request", self, "_on_graphNode_resize_request")
+		connect("close_request", self, "_on_graphNode_close_request")
 
 
 func _on_graphNode_resize_request(new_minsize):
@@ -42,12 +43,31 @@ func _on_graphNode_close_request():
 
 
 func get_save_data() -> Dictionary:
-	print("no overwrite")
-	return {}
+	var data = {}
+	
+	data.meta = {}
+	data.meta.offsetx = offset.x
+	data.meta.offsety = offset.y
+	
+	data.internal = {}
+	data.internal.type = title
+	data.internal.next = next
+	data.internal.id = id
+	data.internal.fields = {}
+	
+	for field_name in _fields:
+		data.internal.fields[field_name] = _fields[field_name].get_save_data()
+	
+	return data
 
 
-func set_from_load_data(data : Dictionary):
-	print("no overwrite")
+func load_data(data : Dictionary):
+	for key in data.internal:
+		pass
+	for field in data.internal.fields:
+		add_field()
+		print(field, " -> ", data.internal[field])
+#		data[field].load_data(data)
 
 
 func get_field(key : String):
@@ -65,17 +85,40 @@ func _set_frame_color(color : Color):
 	get("custom_styles/frame").set("border_color", color)
 
 
-func add_field(field_name : String, new_field, \
-		has_input = false, has_output = false, input_color = Color.green, output_color = Color.red):
-	add_child(new_field, true)
-	_fields[field_name] = new_field
+func add_field(node_data):
+	for field_key in node_data.keys():
+		if field_key == "Meta":
+			continue
+		
+		var field_data = node_data[field_key]
+		
+		var field_type = field_data.FieldType
+		var slot = field_data.Slot.to_lower()
+		var default_value = field_data.Default
+		var input_color = field_data.InputColor
+		var output_color = field_data.OutputColor
+		
+		input_color = Color(input_color[0], input_color[1], input_color[2])
+		output_color = Color(output_color[0], output_color[1], output_color[2])
+		
+		var new_field = find_parent("DialogCreator").NODE_FIELDS[field_type].instance()
+		
+		var has_input = "i" in slot
+		var has_output = "o" in slot
+		
+		
+		new_field.init_field(default_value)
 	
-	set("slot/%d/left_enabled" % (get_child_count()-1), has_input)
-	set("slot/%d/right_enabled" % (get_child_count()-1), has_output)
+		add_child(new_field, true)
+		_fields[field_type] = new_field
+		new_field.set_owner(self)
+		
+		set("slot/%d/left_enabled" % (get_child_count()-1), has_input)
+		set("slot/%d/right_enabled" % (get_child_count()-1), has_output)
+		
+		set("slot/%d/left_color" % (get_child_count()-1), input_color)
+		set("slot/%d/right_color" % (get_child_count()-1), output_color)
+		
+		rect_min_size.y += new_field.rect_size.y
+		_on_graphNode_resize_request(rect_min_size)
 	
-	set("slot/%d/left_color" % (get_child_count()-1), input_color)
-	set("slot/%d/right_color" % (get_child_count()-1), output_color)
-	
-	rect_min_size.y += new_field.rect_size.y
-	_on_graphNode_resize_request(rect_min_size)
-

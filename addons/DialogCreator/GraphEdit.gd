@@ -28,32 +28,20 @@ func init():
 
 
 func connect_signals():
-	if connect("_begin_node_move", self, "_begin_node_move") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("_end_node_move", self, "_end_node_move") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("connection_from_empty", self, "connection_from_empty") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("connection_request", self, "connection_request") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("connection_to_empty", self, "connection_to_empty") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("copy_nodes_request", self, "copy_nodes_request") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("delete_nodes_request", self, "delete_nodes_request") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("disconnection_request", self, "disconnection_request") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("duplicate_nodes_request", self, "duplicate_nodes_request") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("node_selected", self, "node_selected") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("node_unselected", self, "node_unselected") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("paste_nodes_request", self, "paste_nodes_request") != OK: 
-		print_debug("couldn't find func 1")
-	if connect("popup_request", self, "popup_request") != OK: 
-		print_debug("couldn't find func 1")
+	return
+	connect("_begin_node_move", self, "_begin_node_move")
+	connect("_end_node_move", self, "_end_node_move")
+	connect("connection_from_empty", self, "connection_from_empty")
+	connect("connection_request", self, "connection_request")
+	connect("connection_to_empty", self, "connection_to_empty")
+	connect("copy_nodes_request", self, "copy_nodes_request")
+	connect("delete_nodes_request", self, "delete_nodes_request")
+	connect("disconnection_request", self, "disconnection_request")
+	connect("duplicate_nodes_request", self, "duplicate_nodes_request")
+	connect("node_selected", self, "node_selected")
+	connect("node_unselected", self, "node_unselected")
+	connect("paste_nodes_request", self, "paste_nodes_request")
+	connect("popup_request", self, "popup_request")
 
 
 #### CONNECTIONS
