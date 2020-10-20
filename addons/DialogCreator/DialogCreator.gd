@@ -2,6 +2,7 @@ extends Control
 tool
 
 const VERSION = str("[center]Version - 1.0[/center]")
+var version_label
 
 const NODE_CONFIG_PATH = "res://addons/DialogCreator/nodes.json"
 
@@ -19,11 +20,7 @@ const NODE_FIELDS = {
 const NodeBase = "res://addons/DialogCreator/Nodes/GraphNodeBase.tscn"
 
 var _node_names = []
-
 var _node_data
-
-
-var version_label
 
 var sidebar
 var hide_sidebar_button
@@ -46,7 +43,6 @@ var dragging = false
 
 var _unique_node_id = 0
 
-var mouse_inside_graph_edit = false
 
 func _ready():
 	pass
@@ -171,6 +167,48 @@ func load_dialog(path : String):
 	
 	clear_existing_nodes()
 	
+	var test_data = {
+		"data": {
+			"meta": {
+				"0": {
+					"offsetx": 0,
+					"offsety": -20
+				}
+			},
+			"internal": {
+				"0": {
+					"id": 0,
+					"type": "Entry",
+					"fields" : [{
+							"next": 0,
+						},
+					]
+				}
+			},
+		},
+		"editor": {
+			"zoom": 1,
+			"scroll_x": -242,
+			"scroll_y": -185,
+		},
+		"node_prefabs": {
+			"entry": {
+				"name": "Entry",
+				"frame_color": [0, 0, 1],
+				"fields": {
+					"0": {
+						"type": "Label",
+						"slot": "in",
+						"data": {"text": "Entry Id"},
+						"slot_color": [0, 1, 1],
+					}
+				}
+			}
+		},
+	}
+	
+	data = test_data
+	
 	# editor settings
 	graph_edit.zoom = data.editor.zoom
 	graph_edit.scroll_offset.x = data.editor.scrollx
@@ -194,9 +232,12 @@ func load_dialog(path : String):
 func _get_save_data() -> String:
 	var data = {}
 	
-	data["meta"] = {}
-	data["internal"] = {}
 	data["editor"] = {}
+	data["prefabs"] = {}
+	data["data"] = {}
+	
+	data.data["meta"] = {}
+	data.data["internal"] = {}
 	
 	# editor settings
 	data.editor["zoom"] = graph_edit.zoom
@@ -220,17 +261,23 @@ func clear_existing_nodes():
 # SIGNALS
 
 
+func create_node(type, data):
+	
+	pass
+
+
 func create_new_node(type : String):
 	print("Create new node: ", type)
-	var node_data = _node_data.nodes[type]
+	var default_node_data = _node_data.nodes[type]
+	print("data: ", default_node_data)
 	
 	added_node = preload(NodeBase).instance()
 	graph_edit.add_child(added_node)
 	added_node.set_owner(self)
 	
-	added_node.add_field(node_data)
+	added_node.add_field(default_node_data)
 	
-	var frame_color = node_data.Meta.FrameColor
+	var frame_color = default_node_data.Meta.FrameColor
 	frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
 	
 	added_node._set_frame_color(frame_color)
