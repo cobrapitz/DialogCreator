@@ -1,1 +1,1 @@
-{"meta":{"0":{"offsetx":80,"offsety":-40}},"internal":{"0":{"type":"Test","next":[],"id":0,"fields":{"Label":{"text":"Entry Id"},"Multi":{"TemplateFieldType":"RichText","Slot":"in","Default":"mehl","InputColor":[0,1,1],"OutputColor":[1,0.5,1],"Fields":{"0":{"text":"mehl"}}},"RichText":{"text":"test"}}}},"editor":{"zoom":1,"scrollx":-269,"scrolly":-225}}
+{"data":{"0":{"type":"Entry","meta":{"offsetx":0,"offsety":-20},"fields":["TextBox","Label","Multi-Label"],"data":[{},{},{}]}},"editor":{"zoom":1,"scroll_x":-242,"scroll_y":-185}}

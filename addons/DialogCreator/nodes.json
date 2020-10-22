@@ -9,21 +9,21 @@
                 "InputColor": [0, 0, 1],
                 "OutputColor": [0, 0.5, 0.5],
                 "FieldType": "Label",
-                "Default": "Entry Id"
+                "Default": { "text": "Entry Id" }
+            },
+            "1": {
+                "Slot": "",
+                "InputColor": [0, 1, 1],
+                "OutputColor": [0, 0.5, 1],
+                "FieldType": "Multi",
+                "Default": { "TemplateFieldType": "RichText", "Slot": "in", "Default": { "text": "Mehl" }, "InputColor": [0, 1, 1], "OutputColor": [1, 0.5, 1] }
             },
             "2": {
                 "Slot": "",
                 "InputColor": [0, 1, 1],
                 "OutputColor": [0, 0.5, 1],
-                "FieldType": "Multi",
-                "Default": { "TemplateFieldType": "RichText", "Slot": "in", "Default": "mehl", "InputColor": [0, 1, 1], "OutputColor": [1, 0.5, 1] }
-            },
-            "3": {
-                "Slot": "",
-                "InputColor": [0, 1, 1],
-                "OutputColor": [0, 0.5, 1],
                 "FieldType": "RichText",
-                "Default": "test"
+                "Default": { "text": "test" }
             }
         },
         "Entry": {
@@ -35,7 +35,7 @@
                 "FieldType": "Label",
                 "InputColor": [0.5, 0, 1],
                 "OutputColor": [1, 0, 1],
-                "Default": "Entry Id"
+                "Default": { "text": "Entry Id" }
             }
         },
         "Exit": {
@@ -47,7 +47,7 @@
                 "InputColor": [0, 1, 1],
                 "OutputColor": [0, 0.5, 1],
                 "FieldType": "Label",
-                "Default": "Exit"
+                "Default": { "text": "Exit" }
             }
         },
         "Text": {

@@ -17,6 +17,8 @@ const NODE_FIELDS = {
 	"Multi": preload("res://addons/DialogCreator/NodeFields/Multi.tscn"),
 }
 
+
+
 const NodeBase = "res://addons/DialogCreator/Nodes/GraphNodeBase.tscn"
 
 var _node_names = []
@@ -148,9 +150,31 @@ func save_dialog(path : String):
 	print("saving file to: ", path)
 	var file = File.new()
 	file.open(path, File.WRITE_READ)
-	file.store_string(_get_save_data())
+#	file.store_string(_get_save_data())
+	file.store_string(JSON.print(get_test_data()))
 	file.close()
 
+
+func get_test_data() -> Dictionary:
+	var test_data = {
+		"data": {
+			"0": {
+				"type": "Entry",
+				"meta": {
+					"offsetx": 0,
+					"offsety": -20
+				},
+				"fields": ["TextBox", "Label", "Multi-Label"],
+				"data": [{}, {}, {}]
+			}
+		},
+		"editor": {
+			"zoom": 1,
+			"scroll_x": -242,
+			"scroll_y": -185,
+		},
+	}
+	return test_data
 
 func load_dialog(path : String):
 	print("loading file from: ", path)
@@ -167,47 +191,7 @@ func load_dialog(path : String):
 	
 	clear_existing_nodes()
 	
-	var test_data = {
-		"data": {
-			"meta": {
-				"0": {
-					"offsetx": 0,
-					"offsety": -20
-				}
-			},
-			"internal": {
-				"0": {
-					"id": 0,
-					"type": "Entry",
-					"fields" : [{
-							"next": 0,
-						},
-					]
-				}
-			},
-		},
-		"editor": {
-			"zoom": 1,
-			"scroll_x": -242,
-			"scroll_y": -185,
-		},
-		"node_prefabs": {
-			"entry": {
-				"name": "Entry",
-				"frame_color": [0, 0, 1],
-				"fields": {
-					"0": {
-						"type": "Label",
-						"slot": "in",
-						"data": {"text": "Entry Id"},
-						"slot_color": [0, 1, 1],
-					}
-				}
-			}
-		},
-	}
-	
-	data = test_data
+	data = get_test_data()
 	
 	# editor settings
 	graph_edit.zoom = data.editor.zoom

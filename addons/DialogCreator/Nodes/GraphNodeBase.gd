@@ -65,7 +65,7 @@ func load_data(data : Dictionary):
 	for key in data.internal:
 		pass
 	for field in data.internal.fields:
-		add_field()
+		#add_field()
 		print(field, " -> ", data.internal[field])
 #		data[field].load_data(data)
 
@@ -105,7 +105,6 @@ func add_field(node_data):
 		
 		var has_input = "i" in slot
 		var has_output = "o" in slot
-		
 		
 		new_field.init_field(default_value)
 	

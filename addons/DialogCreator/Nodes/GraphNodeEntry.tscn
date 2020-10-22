@@ -42,8 +42,8 @@ shadow_color = Color( 0, 0, 0, 0.0941176 )
 [node name="GraphNodeEntry" type="GraphNode"]
 margin_left = 11.0
 margin_top = 8.0
-margin_right = 244.0
-margin_bottom = 214.0
+margin_right = 240.0
+margin_bottom = 163.0
 custom_styles/frame = ExtResource( 4 )
 custom_constants/close_offset = 22
 custom_constants/title_offset = 22
@@ -63,14 +63,15 @@ __meta__ = {
 
 [node name="MarginContainer" type="VBoxContainer" parent="."]
 margin_left = 23.0
-margin_right = 207.0
-margin_bottom = 89.0
+margin_top = 51.0
+margin_right = 203.0
+margin_bottom = 140.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="MarginContainer"]
-margin_right = 184.0
+margin_right = 180.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
@@ -79,7 +80,7 @@ size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 margin_top = 34.0
-margin_right = 184.0
+margin_right = 180.0
 margin_bottom = 80.0
 mouse_filter = 2
 __meta__ = {
@@ -87,8 +88,7 @@ __meta__ = {
 }
 
 [node name="Control" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
-margin_left = 2.0
-margin_right = 182.0
+margin_right = 180.0
 margin_bottom = 46.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -124,7 +124,7 @@ text = "test"
 
 [node name="Control2" type="Control" parent="MarginContainer"]
 margin_top = 84.0
-margin_right = 184.0
+margin_right = 180.0
 margin_bottom = 89.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
