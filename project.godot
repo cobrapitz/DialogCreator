@@ -9,13 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "DialogCreatorFields",
+"language": "GDScript",
+"path": "res://addons/DialogCreator/AllFields.gd"
+}, {
 "base": "GraphNode",
-"class": "DefaultGraphNode",
+"class": "GraphNodeBase",
 "language": "GDScript",
 "path": "res://addons/DialogCreator/Nodes/GraphNodeBase.gd"
+}, {
+"base": "GraphNodeBase",
+"class": "GraphNodeEntry",
+"language": "GDScript",
+"path": "res://addons/DialogCreator/Nodes/GraphNodeEntry.gd"
+}, {
+"base": "GraphNodeBase",
+"class": "GraphNodeExit",
+"language": "GDScript",
+"path": "res://addons/DialogCreator/Nodes/GraphNodeExit.gd"
+}, {
+"base": "GraphNodeBase",
+"class": "GraphNodeText",
+"language": "GDScript",
+"path": "res://addons/DialogCreator/Nodes/GraphNodeText.gd"
 } ]
 _global_script_class_icons={
-"DefaultGraphNode": ""
+"DialogCreatorFields": "",
+"GraphNodeBase": "",
+"GraphNodeEntry": "",
+"GraphNodeExit": "",
+"GraphNodeText": ""
 }
 
 [application]

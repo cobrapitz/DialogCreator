@@ -4,22 +4,20 @@ tool
 const VERSION = str("[center]Version - 1.0[/center]")
 var version_label
 
-const NODE_CONFIG_PATH = "res://addons/DialogCreator/nodes.json"
-
-
-const NODE_FIELDS = {
-	"Label": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
-	"RichText": preload("res://addons/DialogCreator/NodeFields/RichText.tscn"),
-	"Number_Input": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
-	"Text_Input": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
-	"Check_Button": preload("res://addons/DialogCreator/NodeFields/CheckButton.tscn"),
-	"Option_Button": preload("res://addons/DialogCreator/NodeFields/Label.tscn"),
-	"Multi": preload("res://addons/DialogCreator/NodeFields/Multi.tscn"),
-}
-
-
-
 const NodeBase = "res://addons/DialogCreator/Nodes/GraphNodeBase.tscn"
+
+const Nodes = {
+	"Entry": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Exit": preload("res://addons/DialogCreator/Nodes/GraphNodeExit.tscn"),
+	"Text": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Choice": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"RandomChoice": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Event": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Condition": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Sound": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Music": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+	"Comment": preload("res://addons/DialogCreator/Nodes/GraphNodeEntry.tscn"),
+}
 
 var _node_names = []
 var _node_data
@@ -87,23 +85,12 @@ func init():
 		node_button_container.remove_child(child)
 		child.free()
 	
-	var nodes_config = File.new()
-	nodes_config.open(NODE_CONFIG_PATH, File.READ)
-	_node_data = JSON.parse(nodes_config.get_as_text())
-	nodes_config.close()
-	if _node_data.error != OK:
-		printerr("Couldn't load file: ", NODE_CONFIG_PATH)
-		return
-	_node_data = _node_data.result
-	_node_names = _node_data.nodes.keys()
-	
-	for node_name in _node_names:
+	for node_name in Nodes.keys():
 		var button = Button.new()
 		node_button_container.add_child(button)
 		button.owner = self
 		button.text = node_name
-		var frame_color = _node_data.nodes[node_name].Meta.FrameColor
-		frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
+		var frame_color = Color(randf(), randf(), randf())
 		
 		button.set("custom_styles/normal", 
 				preload("res://addons/DialogCreator/Styles/DC_SidebarNodeButtonStyle.tres").duplicate())
@@ -244,39 +231,18 @@ func clear_existing_nodes():
 
 # SIGNALS
 
-
-func create_node(type, data):
-	
-	pass
-
-
 func create_new_node(type : String):
 	print("Create new node: ", type)
-	var default_node_data = _node_data.nodes[type]
-	print("data: ", default_node_data)
 	
-	added_node = preload(NodeBase).instance()
+	added_node = Nodes[type].instance()
 	graph_edit.add_child(added_node)
 	added_node.set_owner(self)
 	
-	added_node.add_field(default_node_data)
-	
-	var frame_color = default_node_data.Meta.FrameColor
-	frame_color = Color(frame_color[0], frame_color[1], frame_color[2])
-	
-	added_node._set_frame_color(frame_color)
-	added_node.set_title(type)
-	
 	added_nodes.append(added_node)
-	
 	return added_node
 
 
 func _on_node_button_down(type : String):
-	if not _node_names.has(type):
-		print("Node type %s doesn't exist!" % type)
-		return
-	
 	added_node = create_new_node(type)
 	added_node.id = _unique_node_id
 	_unique_node_id += 1

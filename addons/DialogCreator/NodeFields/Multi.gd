@@ -5,7 +5,6 @@ var _node_template_data
 var _fields = []
 
 
-
 func init_field(data):
 	_node_template_data = data
 

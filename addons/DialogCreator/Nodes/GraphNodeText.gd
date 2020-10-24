@@ -1,13 +1,12 @@
-extends "res://Previous/DefaultGraphNode.gd"
-
+extends GraphNodeBase
+class_name GraphNodeText
+tool
 
 signal on_language_changed(id, languageAbbreviation)
 
 
 onready var bustNames = $VBoxContainer/HBoxContainer/VBoxContainer2/BustName
 onready var bustExpressions = $VBoxContainer/HBoxContainer/VBoxContainer2/FacialExpression
-
-var next
 
 var _speakerId = 0
 
@@ -19,6 +18,38 @@ var busts = {}
 func _ready():
 	if texts.has(TranslationServer.get_locale()):
 		$text.text = texts[TranslationServer.get_locale()]
+
+
+func _on_GraphNodeText_item_rect_changed():
+	var top_offset = get("custom_styles/frame").get("border_width_top")
+	var left_offset = get("custom_styles/frame").get("border_width_left")
+	var bottom_offset = get("custom_styles/frame").get("border_width_bottom")
+	var right_offset = get("custom_styles/frame").get("border_width_right")
+	
+	var content_pos = Vector2(left_offset, top_offset)
+	var content_size = get_local_mouse_position() - Vector2(right_offset, bottom_offset) - content_pos
+	
+	print("------------------------")
+	print(content_pos)
+	print(content_size, " - total: ", rect_size)
+	
+	get_child(0).rect_min_size = content_size
+	rect_size = rect_min_size
+
+
+func _on_resize_request(new_minsize):
+	rect_size = new_minsize
+	return
+	var ratios = []
+	var expands = 0
+	
+	if new_minsize.y < rect_min_size.y:
+		new_minsize.y = rect_min_size.y
+	
+	get_child(0).rect_size = rect_size - Vector2(20, -20)
+	get_child(0).rect_position = Vector2(20, -20)
+	
+	print(rect_size)
 
 
 func set_speaker_suggestions(suggestions : Array):
@@ -170,3 +201,4 @@ func _on_Language_item_selected(id):
 
 func _on_text_text_changed():
 	texts[$Language.get_item_text($Language.selected)] = $text.text
+

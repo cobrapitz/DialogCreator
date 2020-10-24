@@ -1,8 +1,8 @@
-extends DefaultGraphNode
+extends GraphNodeBase
+class_name GraphNodeEntry
 tool
 
 signal on_deletion
-
 
 
 

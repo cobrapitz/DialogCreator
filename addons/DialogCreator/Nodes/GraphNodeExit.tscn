@@ -1,29 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeEntry.gd" type="Script" id=1]
+[ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeExit.gd" type="Script" id=1]
 [ext_resource path="res://addons/DialogCreator/Styles/DC_NodeOptionButtonStyle.tres" type="StyleBox" id=2]
 [ext_resource path="res://addons/DialogCreator/Resources/OptionButtonMark.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxFlat" id=3]
-content_margin_left = 23.0
-content_margin_right = 26.0
-content_margin_top = 51.0
-content_margin_bottom = 15.0
-bg_color = Color( 0, 0, 0, 0.211765 )
-border_width_left = 1
-border_width_top = 30
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0, 0.788235, 0.121569, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-shadow_color = Color( 0, 0, 0, 0.184314 )
-shadow_size = 2
-
-[sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 23.0
 content_margin_right = 26.0
 content_margin_top = 51.0
@@ -33,7 +14,7 @@ border_width_left = 1
 border_width_top = 30
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0, 0.788235, 0.121569, 1 )
+border_color = Color( 0.721569, 0, 0, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -76,20 +57,20 @@ expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 shadow_color = Color( 0, 0, 0, 0.0941176 )
 
-[node name="GraphNodeEntry" type="GraphNode"]
+[node name="GraphNodeExit" type="GraphNode"]
 margin_right = 229.0
-margin_bottom = 126.0
+margin_bottom = 155.0
 custom_styles/frame = SubResource( 3 )
-custom_styles/selectedframe = SubResource( 4 )
+custom_styles/selectedframe = SubResource( 3 )
 custom_constants/close_offset = 22
 custom_constants/title_offset = 22
 title = "Entry"
 show_close = true
 resizable = true
-slot/0/left_enabled = false
+slot/0/left_enabled = true
 slot/0/left_type = 0
-slot/0/left_color = Color( 0.0784314, 1, 0, 1 )
-slot/0/right_enabled = true
+slot/0/left_color = Color( 1, 0, 0, 1 )
+slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color( 0.101961, 1, 0, 1 )
 script = ExtResource( 1 )
@@ -101,23 +82,23 @@ __meta__ = {
 margin_left = 23.0
 margin_top = 51.0
 margin_right = 203.0
-margin_bottom = 111.0
+margin_bottom = 140.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="MarginContainer"]
 margin_right = 180.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 0, 1 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-margin_top = 5.0
+margin_top = 34.0
 margin_right = 180.0
-margin_bottom = 51.0
+margin_bottom = 80.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -159,9 +140,9 @@ custom_constants/arrow_margin = 5
 text = "test"
 
 [node name="Control2" type="Control" parent="MarginContainer"]
-margin_top = 55.0
+margin_top = 84.0
 margin_right = 180.0
-margin_bottom = 60.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
 [connection signal="resize_request" from="." to="." method="_on_GraphNodeEntry_resize_request"]

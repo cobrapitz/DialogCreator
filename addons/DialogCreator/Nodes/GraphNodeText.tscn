@@ -1,0 +1,190 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/DialogCreator/Nodes/GraphNodeText.gd" type="Script" id=1]
+[ext_resource path="res://addons/DialogCreator/Styles/DC_NodeOptionButtonStyle.tres" type="StyleBox" id=2]
+[ext_resource path="res://addons/DialogCreator/Resources/OptionButtonMark.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.211765 )
+border_width_left = 1
+border_width_top = 30
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0.858824, 0.607843, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+shadow_color = Color( 0, 0, 0, 0.184314 )
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 23.0
+content_margin_right = 26.0
+content_margin_top = 51.0
+content_margin_bottom = 15.0
+bg_color = Color( 0.490196, 0.490196, 0.490196, 0.211765 )
+border_width_left = 1
+border_width_top = 30
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0.858824, 0.607843, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+shadow_color = Color( 0, 0, 0, 0.184314 )
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.368627, 0.368627, 0.368627, 0.756863 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color( 0, 0, 0, 0.0941176 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.333333, 0.333333, 0.333333, 0.247059 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color( 0, 0, 0, 0.0941176 )
+
+[node name="GraphNodeText" type="GraphNode"]
+margin_right = 280.0
+margin_bottom = 101.0
+rect_min_size = Vector2( 280, 0 )
+custom_styles/frame = SubResource( 5 )
+custom_styles/selectedframe = SubResource( 6 )
+custom_constants/close_offset = 22
+custom_constants/title_offset = 22
+title = "Entry"
+show_close = true
+resizable = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 0, 1, 0.976471, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0, 1, 0.905882, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot0" type="VBoxContainer" parent="."]
+margin_left = 1.0
+margin_top = 30.0
+margin_right = 279.0
+margin_bottom = 100.335
+rect_min_size = Vector2( 185.918, 70.3355 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Slot0"]
+margin_right = 278.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SpeakerLabel" type="Label" parent="Slot0/MarginContainer2"]
+margin_right = 51.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Entry ID"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="SpeakerOption" type="OptionButton" parent="Slot0/MarginContainer2"]
+margin_left = 128.0
+margin_right = 278.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+custom_icons/arrow = ExtResource( 3 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_constants/arrow_margin = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Slot0"]
+margin_top = 28.0
+margin_right = 278.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="BustLabel" type="Label" parent="Slot0/MarginContainer"]
+margin_right = 29.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Bust"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BustOption" type="OptionButton" parent="Slot0/MarginContainer"]
+margin_left = 128.0
+margin_right = 278.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+custom_icons/arrow = ExtResource( 3 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_constants/arrow_margin = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="Slot0"]
+margin_top = 56.0
+margin_right = 278.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextEdit" type="TextEdit" parent="Slot0/MarginContainer3"]
+margin_right = 278.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+[connection signal="item_rect_changed" from="." to="." method="_on_GraphNodeText_item_rect_changed"]
+[connection signal="resize_request" from="." to="." method="_on_resize_request"]
